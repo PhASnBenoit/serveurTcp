@@ -17,14 +17,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void onNewConnection();
-    void onReadyRead();
-    void onConnected();
-    void onDisConnected();
 
 private slots:
-    void on_pushButton_clicked();
-
+    void onNewConnection();
+    void onReadyRead();
+    void onDisConnected();
     void on_pbEnvoyer_clicked();
 
 private:

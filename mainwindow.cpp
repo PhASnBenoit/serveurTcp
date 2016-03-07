@@ -19,10 +19,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::onNewConnection()
 {
+    qDebug() << "onNewConnection";
+    ui->teTexte->append("onNewConnection");
+
     sock = serveur->nextPendingConnection();
-    connect(sock, SIGNAL(connected()), this, SLOT(onConnected()));
     connect(sock, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
-    connect(sock, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
+    connect(sock, SIGNAL(disconnected()), this, SLOT(onDisConnected()));
     listeClients.append(sock);
     ui->cbClients->addItem(sock->objectName());
 }
@@ -32,13 +34,9 @@ void MainWindow::onReadyRead()
     ui->teTexte->append(sock->readAll());
 }
 
-void MainWindow::onConnected()
-{
-    ui->teTexte->append("Client connecté ");
-}
-
 void MainWindow::onDisConnected()
 {
+    qDebug() << "onDisConnected";
     ui->teTexte->append("Client déconnecté ");
 }
 
